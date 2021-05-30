@@ -1,10 +1,10 @@
-package com.example.recruitmentserviceapi;
+package pl.polsl.recruitment;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RecruitmentServiceApiApplicationTests {
+class ApplicationTests {
 
     @Test
     void contextLoads() {

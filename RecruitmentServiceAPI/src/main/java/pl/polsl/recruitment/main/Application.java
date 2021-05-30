@@ -1,13 +1,13 @@
-package com.example.recruitmentserviceapi;
+package pl.polsl.recruitment.main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RecruitmentServiceApiApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(RecruitmentServiceApiApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
 }
