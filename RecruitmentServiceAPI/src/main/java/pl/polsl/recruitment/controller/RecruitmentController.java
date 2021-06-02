@@ -27,4 +27,9 @@ public class RecruitmentController {
         return personRepository.findAll();
     }
 
+    @GetMapping("/persons2")
+    public Iterable<Person> getPersons2() {
+        return personRepository.findAll();
+    }
+
 }
