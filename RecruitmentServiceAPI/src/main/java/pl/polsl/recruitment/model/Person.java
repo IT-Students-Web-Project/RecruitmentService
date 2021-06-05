@@ -1,28 +1,38 @@
 package pl.polsl.recruitment.model;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.Objects;
+import java.util.List;
 
 @Entity
 @Table(name = "PERSONS", schema = "dbo", catalog = "RECRUITMENT")
 public class Person {
-    private int id;
+    private Integer id;
     private String lastName;
     private String firstName;
-    private Integer roleId;
-    private Integer personsSkillsLevelId;
-
-    @JoinColumn(name = "ID")
-    @OneToOne(targetEntity = Address.class)
     private Address address;
+    private List<Order> orders;
+    private List<PersonsSkill> personSkills;
+
+    public Person() {
+
+    }
+
+    public Person(String lastName, String firstName, Address address) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.address = address;
+    }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -46,26 +56,8 @@ public class Person {
         this.firstName = firstName;
     }
 
-    @Basic
-    @Column(name = "ROLE_ID")
-    public Integer getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }
-
-    @Basic
-    @Column(name = "PERSONS_SKILLS_LEVEL_ID")
-    public Integer getPersonsSkillsLevelId() {
-        return personsSkillsLevelId;
-    }
-
-    public void setPersonsSkillsLevelId(Integer personsSkillsLevelId) {
-        this.personsSkillsLevelId = personsSkillsLevelId;
-    }
-
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ADDRESS_ID")
     public Address getAddress() {
         return address;
     }
@@ -74,16 +66,39 @@ public class Person {
         this.address = address;
     }
 
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+    public List<Order> getOrders() {
+        if(orders == null)
+            return Collections.emptyList();
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+    public List<PersonsSkill> getPersonsSkills() {
+        if(personSkills == null)
+            return Collections.emptyList();
+        return personSkills;
+    }
+
+    public void setPersonsSkills(List<PersonsSkill> personSkills) {
+        this.personSkills = personSkills;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return id == person.id && Objects.equals(lastName, person.lastName) && Objects.equals(firstName, person.firstName) && Objects.equals(roleId, person.roleId) && Objects.equals(personsSkillsLevelId, person.personsSkillsLevelId) && Objects.equals(address, person.address);
+        return Objects.equals(id, person.id) && Objects.equals(lastName, person.lastName) && Objects.equals(firstName, person.firstName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, lastName, firstName, roleId, personsSkillsLevelId, address);
+        return Objects.hash(id, lastName, firstName);
     }
 }

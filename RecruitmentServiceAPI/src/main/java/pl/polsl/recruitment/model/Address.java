@@ -6,21 +6,35 @@ import java.util.Objects;
 @Entity
 @Table(name = "ADDRESSES", schema = "dbo", catalog = "RECRUITMENT")
 public class Address {
-    private int id;
+    private Integer id;
     private String street;
-    private int buildingNumber;
+    private Integer buildingNumber;
     private Integer flatNumber;
     private String city;
     private String postalCode;
     private String country;
 
+    public Address() {
+
+    }
+
+    public Address(String street, Integer buildingNumber, Integer flatNumber, String city, String postalCode, String country) {
+        this.street = street;
+        this.buildingNumber = buildingNumber;
+        this.flatNumber = flatNumber;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.country = country;
+    }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -36,11 +50,11 @@ public class Address {
 
     @Basic
     @Column(name = "BUILDING_NUMBER")
-    public int getBuildingNumber() {
+    public Integer getBuildingNumber() {
         return buildingNumber;
     }
 
-    public void setBuildingNumber(int buildingNumber) {
+    public void setBuildingNumber(Integer buildingNumber) {
         this.buildingNumber = buildingNumber;
     }
 
@@ -55,7 +69,7 @@ public class Address {
     }
 
     @Basic
-    @Column(name = "City")
+    @Column(name = "CITY")
     public String getCity() {
         return city;
     }
@@ -65,7 +79,7 @@ public class Address {
     }
 
     @Basic
-    @Column(name = "Postal Code")
+    @Column(name = "POSTAL_CODE")
     public String getPostalCode() {
         return postalCode;
     }
@@ -75,7 +89,7 @@ public class Address {
     }
 
     @Basic
-    @Column(name = "Country")
+    @Column(name = "COUNTRY")
     public String getCountry() {
         return country;
     }
@@ -89,7 +103,7 @@ public class Address {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
-        return id == address.id && buildingNumber == address.buildingNumber && Objects.equals(street, address.street) && Objects.equals(flatNumber, address.flatNumber) && Objects.equals(city, address.city) && Objects.equals(postalCode, address.postalCode) && Objects.equals(country, address.country);
+        return Objects.equals(id, address.id) && Objects.equals(street, address.street) && Objects.equals(buildingNumber, address.buildingNumber) && Objects.equals(flatNumber, address.flatNumber) && Objects.equals(city, address.city) && Objects.equals(postalCode, address.postalCode) && Objects.equals(country, address.country);
     }
 
     @Override

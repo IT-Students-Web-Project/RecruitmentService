@@ -2,21 +2,25 @@ package pl.polsl.recruitment.model;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.List;
 
 @Entity
 @Table(name = "PROJECTS", schema = "dbo", catalog = "RECRUITMENT")
 public class Project {
-    private int id;
+    private Integer id;
     private String name;
     private String description;
+    private List<Order> orders;
+    private Company company;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -45,11 +49,30 @@ public class Project {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Project project = (Project) o;
-        return id == project.id && Objects.equals(name, project.name) && Objects.equals(description, project.description);
+        return Objects.equals(id, project.id) && Objects.equals(name, project.name) && Objects.equals(description, project.description);
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, name, description);
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COMPANY_ID")
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }

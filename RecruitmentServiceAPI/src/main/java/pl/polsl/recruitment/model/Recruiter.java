@@ -6,18 +6,19 @@ import java.util.Objects;
 @Entity
 @Table(name = "RECRUITERS", schema = "dbo", catalog = "RECRUITMENT")
 public class Recruiter {
-    private int id;
+    private Integer id;
     private String lastName;
     private String firstName;
-    private Integer companyId;
+    private Company company;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -41,26 +42,26 @@ public class Recruiter {
         this.firstName = firstName;
     }
 
-    @Basic
-    @Column(name = "COMPANY_ID")
-    public Integer getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(Integer companyId) {
-        this.companyId = companyId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Recruiter recruiter = (Recruiter) o;
-        return id == recruiter.id && Objects.equals(lastName, recruiter.lastName) && Objects.equals(firstName, recruiter.firstName) && Objects.equals(companyId, recruiter.companyId);
+        return Objects.equals(id, recruiter.id) && Objects.equals(lastName, recruiter.lastName) && Objects.equals(firstName, recruiter.firstName);
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COMPANY_ID")
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, lastName, firstName, companyId);
+        return Objects.hash(id, lastName, firstName);
     }
 }

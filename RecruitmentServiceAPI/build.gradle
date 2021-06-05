@@ -17,6 +17,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.session:spring-session-core'
     implementation 'com.microsoft.sqlserver:mssql-jdbc:9.2.1.jre8'
+    implementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'junit:junit:4.13.1'
+    implementation 'junit:junit:4.13.1'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

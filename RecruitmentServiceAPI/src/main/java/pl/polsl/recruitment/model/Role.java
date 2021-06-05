@@ -6,16 +6,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "ROLES", schema = "dbo", catalog = "RECRUITMENT")
 public class Role {
-    private int id;
+    private Integer id;
     private String name;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -34,7 +35,7 @@ public class Role {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Role role = (Role) o;
-        return id == role.id && Objects.equals(name, role.name);
+        return Objects.equals(id, role.id) && Objects.equals(name, role.name);
     }
 
     @Override

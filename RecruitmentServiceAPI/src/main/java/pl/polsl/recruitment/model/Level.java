@@ -6,16 +6,24 @@ import java.util.Objects;
 @Entity
 @Table(name = "LEVELS", schema = "dbo", catalog = "RECRUITMENT")
 public class Level {
-    private int id;
+    private Integer id;
     private String name;
 
+    public Level() {
+    }
+
+    public Level(String name) {
+        this.name = name;
+    }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -34,7 +42,7 @@ public class Level {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Level level = (Level) o;
-        return id == level.id && Objects.equals(name, level.name);
+        return Objects.equals(id, level.id) && Objects.equals(name, level.name);
     }
 
     @Override
