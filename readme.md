@@ -12,6 +12,6 @@
 1. Run it
 
    ```bash
-    docker run -p 8080:8080 james9051/recruitment
+    docker run james9051/recruitment
    ```
   
