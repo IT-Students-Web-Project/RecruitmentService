@@ -7,8 +7,7 @@ import pl.recruitmentservice.restapi.repository.PersonsRepository;
 
 @Service
 @RequiredArgsConstructor
-public class RecrutimentService implements IRecruitmentService{
-
+public class RecruitmentService implements IRecruitmentService{
 
     private final PersonsRepository personsRepository;
 
