@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.recruitmentservice.restapi.model.Person;
 import pl.recruitmentservice.restapi.repository.PersonsRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class RecruitmentService implements IRecruitmentService{
@@ -19,5 +21,10 @@ public class RecruitmentService implements IRecruitmentService{
     @Override
     public Iterable<Person> getPersons() {
         return personsRepository.findAll();
+    }
+
+    @Override
+    public List<Person> getPersonByFirstName(String name) {
+        return personsRepository.findAllByFirstName(name);
     }
 }
