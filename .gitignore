@@ -8,3 +8,4 @@
 .idea/modules/RecruitmentServiceAPI.test.iml
 .idea/modules/RecruitmentServiceAPI.main.iml
 *.iml
+.idea/compiler.xml
