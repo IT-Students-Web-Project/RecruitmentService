@@ -14,4 +14,7 @@
    ```bash
     docker run -p 1433:1433 james9051/recruitment
    ```
+   
+   user:sa password:sa12345678()
+
   
