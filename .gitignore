@@ -1,0 +1,10 @@
+
+*.xml
+.idea/dataSources.xml
+.idea/compiler.xml
+*.meta
+.idea/dataSources.xml
+*.zip
+.idea/modules/RecruitmentServiceAPI.test.iml
+.idea/modules/RecruitmentServiceAPI.main.iml
+*.iml

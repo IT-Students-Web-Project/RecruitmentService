@@ -1,4 +1,4 @@
-package pl.polsl.recruitment.model;
+package pl.recruitmentservice.restapi.model;
 
 import javax.persistence.*;
 import java.util.List;
@@ -43,7 +43,7 @@ public class Company {
         this.projects = projects;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "recruiter")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
     public List<Recruiter> getRecruiters() {
         return recruiters;
     }

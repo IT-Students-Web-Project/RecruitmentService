@@ -1,10 +1,10 @@
-package pl.polsl.recruitment;
+package pl.recruitmentservice.restapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationTests {
+class RestapiApplicationTests {
 
     @Test
     void contextLoads() {

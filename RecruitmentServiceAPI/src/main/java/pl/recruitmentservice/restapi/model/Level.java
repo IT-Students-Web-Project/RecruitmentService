@@ -1,4 +1,4 @@
-package pl.polsl.recruitment.model;
+package pl.recruitmentservice.restapi.model;
 
 import javax.persistence.*;
 import java.util.Objects;

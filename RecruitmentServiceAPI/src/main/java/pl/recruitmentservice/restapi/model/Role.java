@@ -1,21 +1,13 @@
-package pl.polsl.recruitment.model;
+package pl.recruitmentservice.restapi.model;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "SKILLS", schema = "dbo", catalog = "RECRUITMENT")
-public class Skill {
+@Table(name = "ROLES", schema = "dbo", catalog = "RECRUITMENT")
+public class Role {
     private Integer id;
     private String name;
-
-    public Skill() {
-
-    }
-
-    public Skill(String name) {
-        this.name = name;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,8 +34,8 @@ public class Skill {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Skill skill = (Skill) o;
-        return Objects.equals(id, skill.id) && Objects.equals(name, skill.name);
+        Role role = (Role) o;
+        return Objects.equals(id, role.id) && Objects.equals(name, role.name);
     }
 
     @Override
