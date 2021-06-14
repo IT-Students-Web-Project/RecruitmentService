@@ -10,6 +10,6 @@ import pl.recruitmentservice.restapi.model.Person;
 import java.util.List;
 
 @Repository
-public interface PersonsRepository extends CrudRepository<Person, Integer> {
+public interface PersonsRepository extends JpaRepository<Person, Integer> {
     List<Person> findAllByFirstName(String name);
 }
