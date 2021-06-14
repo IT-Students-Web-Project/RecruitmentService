@@ -23,7 +23,7 @@ public class RecruitmentController {
     }
 
     @GetMapping("/persons")
-    public Iterable<Person> getPersons() {
+    public List<Person> getPersons() {
         return recruitmentService.getPersons();
     }
 

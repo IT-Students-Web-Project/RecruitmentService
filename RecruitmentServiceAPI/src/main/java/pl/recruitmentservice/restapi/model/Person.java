@@ -1,93 +1,44 @@
 package pl.recruitmentservice.restapi.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "PERSONS", schema = "dbo", catalog = "RECRUITMENT")
 public class Person {
-    private Integer id;
-    private String lastName;
-    private String firstName;
-    private Address address;
-    private List<Order> orders;
-    private List<PersonsSkill> personSkills;
-
-    public Person() {
-
-    }
-
-    public Person(String lastName, String firstName, Address address) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.address = address;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private Integer id;
 
     @Basic
     @Column(name = "LAST_NAME")
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    private String lastName;
 
     @Basic
     @Column(name = "FIRST_NAME")
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    private String firstName;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ADDRESS_ID")
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
+    private Address address;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
-    public List<Order> getOrders() {
-        if(orders == null)
-            return Collections.emptyList();
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
+    private List<Order> orders;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
-    public List<PersonsSkill> getPersonsSkills() {
-        if(personSkills == null)
-            return Collections.emptyList();
-        return personSkills;
-    }
-
-    public void setPersonsSkills(List<PersonsSkill> personSkills) {
-        this.personSkills = personSkills;
-    }
+    private List<PersonsSkill> personSkills;
 
     @Override
     public boolean equals(Object o) {
