@@ -11,9 +11,4 @@ import java.util.List;
 
 @Repository
 public interface PersonsRepository extends JpaRepository<Person, Integer> {
-
-    @Query("SELECT * FROM PERSON_SKILLS WHERE PERSON_ID = 10")
-    String getPrzyklad(){
-
-    }
 }

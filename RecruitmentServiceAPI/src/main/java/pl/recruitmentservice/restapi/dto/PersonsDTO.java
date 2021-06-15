@@ -30,5 +30,4 @@ public class PersonsDTO {
         list.add(String.valueOf(address.getFlatNumber()));
         return list;
     }
-
 }
