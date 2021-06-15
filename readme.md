@@ -6,13 +6,13 @@
 1. Pull docker repository
 
    ```bash
-   docker pull james9051/recruitment
+      docker pull james9051/recruitment:zmiany
    ```
 
 1. Run it
 
    ```bash
-    docker run -p 1433:1433 james9051/recruitment
+    docker run -p 1433:1433 james9051/recruitment:zmiany
    ```
    
 ## Database connection
