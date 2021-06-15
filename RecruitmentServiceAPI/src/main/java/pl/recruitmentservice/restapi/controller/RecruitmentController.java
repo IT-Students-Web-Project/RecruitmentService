@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import pl.recruitmentservice.restapi.dto.PersonDto;
+import pl.recruitmentservice.restapi.dto.PersonDtoList;
 import pl.recruitmentservice.restapi.model.Person;
 import pl.recruitmentservice.restapi.service.IRecruitmentService;
 
@@ -23,8 +25,8 @@ public class RecruitmentController {
     }
 
     @GetMapping("/persons")
-    public List<Person> getPersons() {
-        return recruitmentService.getPersons();
+    public Iterable<PersonDto> getPersons() {
+        return new PersonDtoList(recruitmentService.getPersons()).getList();
     }
 
     @GetMapping("/persons/{name}")

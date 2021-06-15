@@ -1,5 +1,7 @@
 package pl.recruitmentservice.restapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.Objects;
@@ -66,11 +68,8 @@ public class Person {
         this.address = address;
     }
 
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
     public List<Order> getOrders() {
-        if(orders == null)
-            return Collections.emptyList();
         return orders;
     }
 

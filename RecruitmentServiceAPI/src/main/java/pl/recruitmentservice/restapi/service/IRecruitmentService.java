@@ -1,6 +1,9 @@
 package pl.recruitmentservice.restapi.service;
 
-import pl.recruitmentservice.restapi.model.*;
+
+import org.springframework.stereotype.Service;
+import pl.recruitmentservice.restapi.dto.PersonDto;
+import pl.recruitmentservice.restapi.model.Person;
 
 import java.util.List;
 
