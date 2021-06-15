@@ -6,7 +6,8 @@
 1. Pull docker repository
 
    ```bash
-      docker pull james9051/recruitment:zmiany   ```
+      docker pull james9051/recruitment:zmiany
+   ```
 
 1. Run it
 
