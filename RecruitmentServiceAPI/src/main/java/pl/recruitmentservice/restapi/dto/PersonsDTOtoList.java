@@ -6,16 +6,16 @@ import java.util.List;
 
 public class PersonsDTOtoList {
 
-    private List<PersonsDTO> dtoList;
+    private List<PersonDTO> dtoList;
 
     public PersonsDTOtoList(List<Person> persons) {
         this.dtoList = new ArrayList<>();
         for (Person p : persons) {
-            this.dtoList.add(new PersonsDTO(p));
+            this.dtoList.add(new PersonDTO(p));
         }
     }
 
-    public List<PersonsDTO> getList() {
+    public List<PersonDTO> getList() {
         return dtoList;
     }
 }

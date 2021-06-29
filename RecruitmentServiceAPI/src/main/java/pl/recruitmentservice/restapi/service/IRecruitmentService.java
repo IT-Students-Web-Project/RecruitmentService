@@ -8,4 +8,5 @@ import java.util.List;
 public interface IRecruitmentService {
     public List<Person> getPersons();
     public List<PersonsSkill> getPersonSkills();
+    List<Person> getPersonsBySkills(List<Integer> idSkills);
 }
