@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequiredArgsConstructor
 public class RecruitmentController {
@@ -23,7 +24,6 @@ public class RecruitmentController {
     public Iterable<PersonDTO> getPersons() {
         return new PersonsDTOtoList(recruitmentService.getPersons()).getList();
     }
-
     @GetMapping("/skills")
     public Iterable<SkillDTO> getSkills() {
         return new SkillDTOtoList(recruitmentService.getSkills()).getList();
