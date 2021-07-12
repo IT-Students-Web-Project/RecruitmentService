@@ -9,13 +9,14 @@ import { SkillService } from './skill.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   skills: Skill[];
+
   constructor(private skillService: SkillService, private router: Router) {}
-  ngOnInit(){
-    this.skillService.getSkills().subscribe(s => this.skills = s);
-  }
+
+  ngOnInit(){ this.skillService.getSkills().subscribe(s => this.skills = s); }
+
   title = 'RecruitmentServiceClient';
-  getRouter(): Router{
-    return this.router
-  };
+
+  getRouter(): Router{return this.router; }
 }
