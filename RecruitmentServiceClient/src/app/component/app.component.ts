@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Skill } from 'src/models/skill';
-import { SkillService } from './skill.service';
+import { SkillService } from '../service/skill.service';
 
 @Component({
   selector: 'app-root',
