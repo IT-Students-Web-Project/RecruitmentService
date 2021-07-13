@@ -1,1 +1,7 @@
-<p>Id: {{skill.id}}   Skill: {{skill.name}}</p>
+<div class="dls-menu-item">
+  <button class="btn btn-sm btn-outline-secondary" (click)="onPress()">Pokaż listę umiejętności</button>
+</div>
+
+<div id="comp-render" *ngIf="display">
+  <app-skill *ngFor="let s of skills" [skill]="s"></app-skill>
+</div>

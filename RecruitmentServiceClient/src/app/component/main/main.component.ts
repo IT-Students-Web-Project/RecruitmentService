@@ -5,22 +5,20 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MainComponent implements OnInit {
 
   skills: Skill[];
 
-  constructor(private skillService: SkillService, private router: Router) { }
+  constructor( private skillService: SkillService, private router: Router ) { }
 
-  display = false;
+  display = true;
 
   ngOnInit(){ this.skillService.getSkills().subscribe(s => this.skills = s); }
 
-  getRouter(): Router{return this.router; }
+  getRouter(): Router{ return this.router; }
 
-  onPress() {
-    this.display = !this.display;
-  }
+  onPress() { this.display = !this.display; }
 }

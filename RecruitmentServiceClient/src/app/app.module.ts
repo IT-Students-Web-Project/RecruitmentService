@@ -10,7 +10,8 @@ import { SkillComponent } from './component/skill/skill.component';
 import { LevelComponent } from './component/level/level.component';
 import { PersonSkillComponent } from './component/person-skill/person-skill.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MenuComponent } from './component/menu/menu.component';
+import { MainComponent } from './component/main/main.component';
+import { SimpleCORSFilterComponent } from './simple-corsfilter/simple-corsfilter.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MenuComponent } from './component/menu/menu.component';
     SkillComponent,
     LevelComponent,
     PersonSkillComponent,
-    MenuComponent
+    MainComponent,
+    SimpleCORSFilterComponent
   ],
   imports: [
     BrowserModule,

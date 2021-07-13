@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Skill } from 'src/models/skill';
+import {SkillService} from '../../service/skill.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-skill',
@@ -8,9 +10,16 @@ import { Skill } from 'src/models/skill';
 })
 export class SkillComponent implements OnInit {
 
-  constructor() { }
-  @Input() skill: Skill;
-  ngOnInit(): void {
-  }
+  skills: Skill[];
+
+  constructor(private skillService: SkillService, private router: Router) { }
+
+  display = true;
+
+  ngOnInit(){ this.skillService.getSkills().subscribe(s => this.skills = s); }
+
+  getRouter(): Router{return this.router; }
+
+  onPress() { this.display = !this.display; }
 
 }

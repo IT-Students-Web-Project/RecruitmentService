@@ -24,6 +24,7 @@ public class RecruitmentController {
     public Iterable<PersonDTO> getPersons() {
         return new PersonsDTOtoList(recruitmentService.getPersons()).getList();
     }
+
     @GetMapping("/skills")
     public Iterable<SkillDTO> getSkills() {
         return new SkillDTOtoList(recruitmentService.getSkills()).getList();
@@ -35,9 +36,7 @@ public class RecruitmentController {
     }
 
     @GetMapping("/personsSkills")
-    public Iterable<PersonsSkillDTO> getPersonsSkills() {
-        return new PersonSkillsDTOList(recruitmentService.getPersonSkills()).getList();
-    }
+    public Iterable<PersonsSkillDTO> getPersonsSkills() { return new PersonSkillsDTOList(recruitmentService.getPersonSkills()).getList(); }
 
     @GetMapping("/personsBySkills")
     public Iterable<PersonDTO> getPersonsBySkills(@RequestParam(value = "id") String idSkills) {
