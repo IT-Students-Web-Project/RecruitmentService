@@ -21,4 +21,6 @@ export class SkillComponent implements OnInit {
   getRouter(): Router{ return this.router; }
 
   onPress() { this.display = !this.display; }
+
+  wyszukajKandydata() {  }
 }
