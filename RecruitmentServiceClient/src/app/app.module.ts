@@ -11,7 +11,6 @@ import { LevelComponent } from './component/level/level.component';
 import { PersonSkillComponent } from './component/person-skill/person-skill.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './component/main/main.component';
-import { SimpleCORSFilterComponent } from './simple-corsfilter/simple-corsfilter.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import { SimpleCORSFilterComponent } from './simple-corsfilter/simple-corsfilter
     LevelComponent,
     PersonSkillComponent,
     MainComponent,
-    SimpleCORSFilterComponent
   ],
   imports: [
     BrowserModule,

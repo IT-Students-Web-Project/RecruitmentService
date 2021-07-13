@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Skill } from 'src/models/skill';
 import { SkillService } from '../service/skill.service';
@@ -8,7 +8,7 @@ import { SkillService } from '../service/skill.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   skills: Skill[];
 

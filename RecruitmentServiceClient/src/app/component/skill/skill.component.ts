@@ -14,12 +14,11 @@ export class SkillComponent implements OnInit {
 
   constructor(private skillService: SkillService, private router: Router) { }
 
-  display = true;
+  display = false;
 
   ngOnInit(){ this.skillService.getSkills().subscribe(s => this.skills = s); }
 
-  getRouter(): Router{return this.router; }
+  getRouter(): Router{ return this.router; }
 
   onPress() { this.display = !this.display; }
-
 }
