@@ -22,5 +22,5 @@ export class SkillComponent implements OnInit {
 
   onPress() { this.display = !this.display; }
 
-  wyszukajKandydata() {  }
+  wyszukajKandydata(id) { this.router.navigateByUrl('personsBySkills/' + this.skills[id].id); }
 }
