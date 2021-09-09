@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Level {
     private Integer id;
     private String name;
+    private Integer value;
 
     public Level() {
     }
@@ -35,6 +36,16 @@ public class Level {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Basic
+    @Column(name = "VALUE")
+    public Integer getValue() {
+        return value;
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
     }
 
     @Override
