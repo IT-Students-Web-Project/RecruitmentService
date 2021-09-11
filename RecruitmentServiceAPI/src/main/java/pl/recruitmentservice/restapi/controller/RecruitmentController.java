@@ -9,8 +9,6 @@ import pl.recruitmentservice.restapi.service.IRecruitmentService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -39,13 +37,18 @@ public class RecruitmentController {
     public Iterable<PersonsSkillDTO> getPersonsSkills() { return new PersonSkillsDTOList(recruitmentService.getPersonSkills()).getList(); }
 
     @GetMapping("/personsBySkills")
-    public Iterable<PersonDTO> getPersonsBySkills(@RequestParam(value = "id") String idSkills) {
-        List<String> idsStr = Arrays.asList(idSkills.split(","));
-        List<Integer> ids = new ArrayList<Integer>();
+    public Iterable<PersonDTO> getPersonsBySkills(@RequestParam(value = "idSkills") String idSkills) {
+        List<Integer> ids = idsStringToList(idSkills);
+        return new PersonsDTOtoList(recruitmentService.getPersonsBySkills(ids)).getList();
+    }
+
+    private List<Integer> idsStringToList(String paramsString) {
+        List<String> idsStr = Arrays.asList(paramsString.split(","));
+        List<Integer> ids = new ArrayList<>();
         for (String s: idsStr) {
             ids.add(Integer.parseInt(s));
         }
-        return new PersonsDTOtoList(recruitmentService.getPersonsBySkills(ids)).getList();
+        return ids;
     }
 }
 
