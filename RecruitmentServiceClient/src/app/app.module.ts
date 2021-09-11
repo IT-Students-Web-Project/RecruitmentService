@@ -11,6 +11,7 @@ import { LevelComponent } from './component/level/level.component';
 import { PersonSkillComponent } from './component/person-skill/person-skill.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './component/main/main.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,12 +22,13 @@ import { MainComponent } from './component/main/main.component';
     SkillComponent,
     LevelComponent,
     PersonSkillComponent,
-    MainComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

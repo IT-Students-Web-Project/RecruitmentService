@@ -1,4 +1,5 @@
-import { Address } from "cluster";
+
+import { Address } from "./address";
 import { PersonSkill } from "./PersonSkill";
 
 export interface Person{

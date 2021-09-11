@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Skill } from 'src/models/skill';
 import {SkillService} from '../../service/skill.service';
 import {Router} from '@angular/router';
+import { Person } from 'src/models/person';
+import { PersonService } from 'src/app/service/person.service';
+
 
 @Component({
   selector: 'app-skill',
@@ -10,17 +13,26 @@ import {Router} from '@angular/router';
 })
 export class SkillComponent implements OnInit {
 
-  skills: Skill[];
+  skills: Skill[] = [];
+  selectedSkills: Skill[] = [];
+  persons: Person[] = [];
 
-  constructor(private skillService: SkillService, private router: Router) { }
-
-  display = false;
+  constructor(private skillService: SkillService, private personService: PersonService,private router: Router) { }
 
   ngOnInit(){ this.skillService.getSkills().subscribe(s => this.skills = s); }
 
   getRouter(): Router{ return this.router; }
 
-  onPress() { this.display = !this.display; }
-
-  wyszukajKandydata(id) { this.router.navigateByUrl('personsBySkills/' + this.skills[id].id); }
+  selectSkill(skill: Skill) {
+    console.log("select skill");
+    
+    if(this.selectedSkills.includes(skill))
+      this.selectedSkills.splice(this.selectedSkills.indexOf(skill), 1);
+    else
+      this.selectedSkills.push(skill);
+  }
+ 
+  wyszukajKandydata() { 
+    this.personService.getPersonsBySkills(this.selectedSkills).subscribe(p => this.persons = p);
+   }
 }
