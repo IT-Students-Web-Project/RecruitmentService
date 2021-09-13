@@ -14,4 +14,5 @@ public interface IRecruitmentService {
     public List<Person> getPersonsBySkills(List<Integer> idSkills);
     public List<Skill> getSkills();
     public List<Level> getLevels();
+    public List<String> getPersonsCities();
 }

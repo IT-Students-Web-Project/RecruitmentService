@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
-public class RecruitmentService implements IRecruitmentService{
+public class RecruitmentService implements IRecruitmentService {
     @Autowired
     private final PersonsRepository personsRepository;
 
@@ -37,23 +37,39 @@ public class RecruitmentService implements IRecruitmentService{
     public List<Person> getPersons() {
         return personsRepository.findAll();
     }
-    @Override
-    public List<PersonsSkill> getPersonSkills(){return personSkillsRepository.findAll();}
 
     @Override
-    public List<Skill> getSkills() { return skillRepository.findAll(); }
+    public List<PersonsSkill> getPersonSkills() {
+        return personSkillsRepository.findAll();
+    }
 
     @Override
-    public List<Level> getLevels() { return levelRepository.findAll(); }
+    public List<Skill> getSkills() {
+        return skillRepository.findAll();
+    }
+
+    @Override
+    public List<Level> getLevels() {
+        return levelRepository.findAll();
+    }
 
     @Override
     public List<Person> getPersonsBySkills(List<Integer> idSkills) {
         List<Person> people = personsRepository.findAll().stream().collect(Collectors.toList());
-        for(Integer id : idSkills) {
+        for (Integer id : idSkills) {
             people = people.stream()
                     .filter(p -> p.getPersonsSkills().stream().anyMatch(ps -> ps.getSkill().getId().equals(id)))
                     .collect(Collectors.toList());
         }
         return people;
+    }
+
+    @Override
+    public List<String> getPersonsCities() {
+        return personsRepository.findAll().stream()
+                .map(p -> p.getAddress().getCity())
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }
