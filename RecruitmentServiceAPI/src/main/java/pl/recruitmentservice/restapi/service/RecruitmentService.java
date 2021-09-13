@@ -13,8 +13,10 @@ import pl.recruitmentservice.restapi.repository.PersonsRepository;
 import pl.recruitmentservice.restapi.repository.SkillRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -46,12 +48,11 @@ public class RecruitmentService implements IRecruitmentService{
 
     @Override
     public List<Person> getPersonsBySkills(List<Integer> idSkills) {
-        List<Person> people = new ArrayList<>();
-        List<PersonsSkill> requiredSkills = personSkillsRepository.findAll().stream()
-                .filter(ps -> idSkills.contains(ps.getSkill().getId()))
-                .collect(Collectors.toList());
-        for(PersonsSkill s : requiredSkills) {
-            people.add(s.getPerson());
+        List<Person> people = personsRepository.findAll().stream().collect(Collectors.toList());
+        for(Integer id : idSkills) {
+            people = people.stream()
+                    .filter(p -> p.getPersonsSkills().stream().anyMatch(ps -> ps.getSkill().getId().equals(id)))
+                    .collect(Collectors.toList());
         }
         return people;
     }
