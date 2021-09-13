@@ -6,6 +6,6 @@ export interface Person{
     id :number;
     firstName :string;
     lastName :string;
-    address :Address;
+    address : Address;
     personSkills :PersonSkill[];
 }

@@ -10,26 +10,32 @@ export class PersonService {
 
   private persons: BehaviorSubject<Person[]> = new BehaviorSubject<Person[]>([]);
 
-  constructor(private http :HttpClient) { }
-  getAllPersons(): Observable<Person[]>{
+  constructor(private http: HttpClient) { }
+  getAllPersons(): Observable<Person[]> {
     return this.http.get<Person[]>("http://localhost:8080/persons");
   }
-  getPersonsWithSkill(id: number): Observable<Person[]>{
-    if(id>=0)
-      return this.http.get<Person[]>("http://localhost:8080/persons?id="+id);
+  getPersonsWithSkill(id: number): Observable<Person[]> {
+    if (id >= 0)
+      return this.http.get<Person[]>("http://localhost:8080/persons?id=" + id);
   }
-  observe(): Observable<Person[]>{
+  observe(): Observable<Person[]> {
     return this.persons.asObservable();
   }
-  
-  getPersonsBySkills(selectedSkills: Skill[]) { 
-    let idSkills= "";
+
+  getPersonsBySkills(selectedSkills: Skill[], city: string) {
+    let idSkills = "";
     selectedSkills.forEach(s => {
       idSkills += s.id + ",";
     });
     idSkills = idSkills.substr(0, idSkills.length - 1)
 
-    const params: HttpParams = new HttpParams().set("idSkills", idSkills);
-    return this.http.get<Person[]>("http://localhost:8080/personsBySkills", {params});
+    let params: HttpParams = new HttpParams()
+      .set("idSkills", idSkills)
+      .set("city", city);
+    return this.http.get<Person[]>("http://localhost:8080/personsBySkills", { params });
+  }
+
+  getPersonsCities() {
+    return this.http.get<string[]>("http://localhost:8080/personsCities");
   }
 }

@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './component/app.component';
-import {PersonListComponent} from './component/person-list/person-list.component';
+import { PersonComponent } from './component/person/person.component';
+import { SkillComponent } from './component/skill/skill.component';
 
 const routes: Routes = [
-  {path: '', component: AppComponent},
-  {path: 'personsBySkills', children: [
-    {path: ':id', component: PersonListComponent}
+  {path: '', component: SkillComponent},
+  {path: 'person', children: [
+    {path: ':id', component: PersonComponent}
     ]
   }
 ];

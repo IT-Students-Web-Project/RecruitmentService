@@ -2,22 +2,32 @@
   <button class="btn btn-sm btn-outline-secondary" (click)="onPress()">Pokaż listę umiejętności</button>
 </div> -->
 
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h1 class="h2">Wyszukaj kandydatów</h1>
+</div>     
+
 <div class="container">
   <div class="row">
     <div class="col-sm">
       <b>Umiejętności</b><br>
       <div *ngFor="let s of skills">
-        <input (change)="selectSkill(s)" type="checkbox"/> {{s.name}}
+        <input (change)="selectSkill(s)" type="checkbox" /> {{s.name}}
       </div>
     </div>
     <div class="col-sm">
       <b>Lokalizacja</b>
+      <div>
+        <select [(ngModel)]="selectedCity">
+          <option [ngValue]=""></option>
+          <option *ngFor="let c of cities" [ngValue]="c">{{c}}</option>
+        </select>
+      </div>
     </div>
   </div>
- <br>
+  <br>
   <div class="row align-items-center">
+    <button (click)="wyszukajKandydata()" class="btn btn-sm btn-primary">Szukaj</button>
     <div class="col-sm">
-      <button (click)="wyszukajKandydata()" class="btn btn-sm btn-primary">Szukaj</button>
     </div>
   </div>
 </div>
@@ -31,6 +41,8 @@
         <th>Lp</th>
         <th>Imię</th>
         <th>Nazwisko</th>
+        <th>Lokalizacja</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -38,6 +50,8 @@
         <td>{{i + 1}}</td>
         <td>{{p.firstName}}</td>
         <td>{{p.lastName}}</td>
+        <td>{{p.address.city}}</td>
+        <td><button (click)="choosePerson(p.id)" class="btn btn-sm btn-primary"><i class="fa fa-folder"></i> Wybierz</button></td>
       </tr>
     </tbody>
   </table>
