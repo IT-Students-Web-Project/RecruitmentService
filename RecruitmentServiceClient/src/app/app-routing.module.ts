@@ -11,7 +11,7 @@ import { AuthorizationGuard } from './authorization.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'kandydaci', component: SkillComponent, canActivate: [AuthorizationGuard] },
+  { path: 'candidates', component: SkillComponent, canActivate: [AuthorizationGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'addCandidate', component: AddCandidateComponent, canActivate: [AuthorizationGuard] },
   { path: 'addProject', component: AddProjectComponent, canActivate: [AuthorizationGuard] },

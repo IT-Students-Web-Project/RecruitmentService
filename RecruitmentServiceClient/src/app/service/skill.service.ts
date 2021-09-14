@@ -9,11 +9,7 @@ import { LoginService } from './login.service';
 })
 export class SkillService {
 
-  private levels: BehaviorSubject<Skill[]> = new BehaviorSubject<Skill[]>([]);
-
   constructor(private http: HttpClient, private loginService: LoginService) { }
 
-  getSkills(): Observable<Skill[]>{ return this.http.get<Skill[]>('http://localhost:8080/skills',{headers: this.loginService.addAuthorizationHeader()}); }
-
-  observe(): Observable<Skill[]>{ return this.levels.asObservable(); }
+  getSkills(): Observable<Skill[]>{ return this.http.get<Skill[]>('http://localhost:8080/skills',{headers: this.loginService.authorizationHeader()}); }
 }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
 import { LoginService } from './service/login.service';
 
 @Injectable({
@@ -15,10 +14,13 @@ export class AuthorizationGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
       const user = this.loginService.getAuthorizedUser();
+      console.log("User: " + user)
       if (user == null) {
+        this.loginService.setRedirection(state.url);
         this.router.navigateByUrl('login');
       }
-      return user != null;
-  }
-  
+      let value : boolean = (user != null);
+      console.log("canAccess: " + value);
+      return value;
+  }  
 }

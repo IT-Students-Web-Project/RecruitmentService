@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
 @Service
 public class RecruitmentUserDetailService implements UserDetailsService {
 
-    private List<User> users;
+    private List<UserDetails> users;
 
     public RecruitmentUserDetailService() {
         super();
@@ -30,10 +30,11 @@ public class RecruitmentUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
-            return users.stream()
+            UserDetails userDetails = users.stream()
                     .filter(u -> u.getUsername().equals(username))
                     .findAny()
                     .get();
+            return userDetails;
         } catch(NoSuchElementException ex) {
             throw new UsernameNotFoundException(username);
         }

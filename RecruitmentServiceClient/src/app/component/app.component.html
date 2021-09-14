@@ -6,7 +6,7 @@
 
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <a routerLink="login" class="nav-link" href="#">Wyloguj</a>
+      <a routerLink="" class="nav-link" href="#" (click)="logout()" *ngIf="displayLogout">Wyloguj</a>
     </li>
   </ul>
 </nav>
