@@ -13,6 +13,7 @@ import { LoginComponent } from './component/login/login.component';
 import { AddCandidateComponent } from './component/add-candidate/add-candidate.component';
 import { AddProjectComponent } from './component/add-project/add-project.component';
 import { AddClientComponent } from './component/add-client/add-client.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AddClientComponent } from './component/add-client/add-client.component'
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        BrowserAnimationsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
