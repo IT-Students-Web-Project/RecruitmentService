@@ -35,17 +35,19 @@ public class RecruitmentController {
 
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginDto login) throws Exception {
+    public TokenDto login(@RequestBody LoginDto login) throws Exception {
 
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword())
             );
+
         } catch (BadCredentialsException ex) {
             throw new Exception("Niepoprawny uzytkownik lub haslo", ex);
         }
         UserDetails userDetails = userDetailService.loadUserByUsername(login.getUsername());
-        return jwtTokenUtil.generateToken(userDetails);
+        String token = jwtTokenUtil.generateToken(userDetails);
+        return new TokenDto(token);
     }
 
     @GetMapping("/persons")

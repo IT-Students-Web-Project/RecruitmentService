@@ -22,8 +22,10 @@ export class LoginComponent implements OnInit {
 
   logIn(): void {
     this.loginService.authorize(this.login).subscribe(res => {
-      if (res)
-        this.router.navigateByUrl('');
+      console.log(res);
+      if (res) {
+        this.loginService.redirect();
+      }        
       else
         this.error = "Niepoprawny login lub hasło!";
     })

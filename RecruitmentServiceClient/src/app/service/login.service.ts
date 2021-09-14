@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 export interface Login {
@@ -17,21 +18,37 @@ export interface LoginRes {
 })
 export class LoginService {
 
-  userStateChangeEvent: EventEmitter<void> = new EventEmitter<void>();
+  redirectUrl: string;
+  status: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(false);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   getAuthorizedUser(): LoginRes | null {
     let loginRes = JSON.parse(sessionStorage.getItem('user')) as LoginRes;
-    if(loginRes != null && this.isTokenExpired(loginRes.token)) {
+    if (loginRes != null && this.isTokenExpired(loginRes.token)) {      
       this.logout();
       loginRes = null;
-    }
+    }    
     return loginRes;
   }
-  
 
-  addAuthorizationHeader(): HttpHeaders {
+  getStatus() : Observable<Boolean> {
+    return this.status.asObservable();
+  }
+
+  redirect() {
+    this.router.navigateByUrl(this.redirectUrl);
+  }
+
+  setRedirection(redirectUrl: string) {
+    this.redirectUrl = redirectUrl;
+  }
+
+  get getRedirection() : string{
+    return this.redirectUrl;
+  } 
+
+  authorizationHeader(): HttpHeaders {
     return new HttpHeaders().set('Authorization', 'Bearer ' + this.getAuthorizedUser()?.token);
   }
 
@@ -50,18 +67,19 @@ export class LoginService {
   }
 
   authorize(login: Login): Observable<boolean> {
-    return this.http.post<string>("http://localhost:8080/login", login).pipe(map(res => {
+    return this.http.post<LoginRes>("http://localhost:8080/login", login).pipe(map(res => {
       sessionStorage.setItem('user', JSON.stringify(res));
-      this.userStateChangeEvent.emit();
+      this.status.next(true);
       return true;
-    }), catchError(error=> {
+    }), catchError(error => {
       return of(false);
     }));
   }
 
   logout() {
     sessionStorage.removeItem('user');
-    this.userStateChangeEvent.emit();
+    this.status.next(false);
   }
+  
 
 }
