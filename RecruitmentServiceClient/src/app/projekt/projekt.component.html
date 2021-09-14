@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Wyszukaj projekty:</h1>
+  </div>
+
+  <div class="container">
+      <div class="row">
+          <div class="col-sm">
+              <b>Wykorzystany język</b>
+              <div *ngFor="let s of skills">
+                <input (change)="selectSkill(s)" type="checkbox" /> {{s.name}}
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <br>
+  <div class="="dls-menu-item">
+      <button (click)="wyszukajProjekt()" class="btn btn-sm btn-success">Szukaj</button>
+      <div class="col-sm">
+      </div>
+  </div>
+
+  <br>
+  <h2>Wyniki</h2>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th>Lp</th>
+          <th>Nazwa</th>
+          <th>Opis</th>
+          <th>Uczestnicy</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of project; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{p.name}}</td>
+          <td>{{p.description}}</td>
+          <td>{{p.persons}}</td>
+          <td><button (click)="chooseProject(p.id)" class="btn btn-sm btn-primary"><i class="fa fa-folder"></i> Wybierz</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
