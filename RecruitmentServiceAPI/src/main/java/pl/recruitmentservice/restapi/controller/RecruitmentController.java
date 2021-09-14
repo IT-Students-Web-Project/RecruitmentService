@@ -2,10 +2,16 @@ package pl.recruitmentservice.restapi.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import pl.recruitmentservice.restapi.dto.*;
 import pl.recruitmentservice.restapi.model.Person;
+import pl.recruitmentservice.restapi.security.JwtUtil;
 import pl.recruitmentservice.restapi.service.IRecruitmentService;
+import pl.recruitmentservice.restapi.service.RecruitmentUserDetailService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,10 +23,29 @@ import java.util.stream.Collectors;
 @RestController
 public class RecruitmentController {
 
-    private final IRecruitmentService recruitmentService;
+    @Autowired
+    private IRecruitmentService recruitmentService;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private RecruitmentUserDetailService userDetailService;
+    @Autowired
+    private JwtUtil jwtTokenUtil;
 
-    public RecruitmentController(@Autowired IRecruitmentService recruitmentService) {
-        this.recruitmentService = recruitmentService;
+
+
+    @PostMapping("/login")
+    public String login(@RequestBody LoginDto loginDto) throws Exception {
+
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword())
+            );
+        } catch (BadCredentialsException ex) {
+            throw new Exception("Niepoprawny uzytkownik lub haslo", ex);
+        }
+        UserDetails userDetails = userDetailService.loadUserByUsername(loginDto.getUsername());
+        return jwtTokenUtil.generateToken(userDetails);
     }
 
     @GetMapping("/persons")
