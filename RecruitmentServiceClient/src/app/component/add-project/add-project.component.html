@@ -1,1 +1,30 @@
-<p>add-project works!</p>
+<div class="container">
+    <div class="container">
+      <h4 class="mb-3">Dodawanie projektu:</h4>
+      <div class="row">
+        <!--
+        <form class="needs-validation" novalidate *ngIf="form != null" [formGroup]="form" (ngSubmit)="onSubmit()">
+  -->
+        <form>
+          <div class="col-md-8 order-md-1">
+            <div class="row">
+              <div class="mb-3">
+                <label for="Nazwa">Nazwa Projektu:</label>
+                <input class="form-control" id="Nazwa" name="Nazwa" formControlName="Nazwa" required minlength="2"
+                  maxlength="30">
+              </div>
+              <div class="mb-3">
+                <label for="Opis">Opis projektu:</label>
+                <input class="form-control" id="Opis" name="Opis" formControlName="Opis" required
+                  minlength="2" maxlength="30">
+              </div>
+            </div>
+            <div class="mb-3">
+              <button class="btn btn-danger" type="reset">Wyczysc</button>
+              <button class="btn btn-primary">Zatwierdz</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
