@@ -9,6 +9,8 @@ import { LevelComponent } from './component/level/level.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './component/main/main.component';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { FormsModule } from '@angular/forms';
     PersonComponent,
     SkillComponent,
     LevelComponent,
-    MainComponent
+    MainComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
