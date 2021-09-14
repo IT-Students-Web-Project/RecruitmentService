@@ -2,7 +2,7 @@
   <div class="container">
     <h4 class="mb-3">Dodawanie kandydata:</h4>
     <div class="row">
-<!--
+      <!--
       <form class="needs-validation" novalidate *ngIf="form != null" [formGroup]="form" (ngSubmit)="onSubmit()">
 -->
       <form>
@@ -11,34 +11,35 @@
             <div class="mb-3">
               <label for="imie">Imię:</label>
               <input class="form-control" id="imie" name="imie" formControlName="imie" required minlength="2"
-                     maxlength="30">
+                maxlength="30">
             </div>
             <div class="mb-3">
               <label for="nazwisko">Nazwisko:</label>
-              <input class="form-control" id="nazwisko" name="nazwisko" formControlName="nazwisko" required minlength="2"
-                     maxlength="30">
+              <input class="form-control" id="nazwisko" name="nazwisko" formControlName="nazwisko" required
+                minlength="2" maxlength="30">
             </div>
             <div class="mb-3">
               <label for="miasto">Miasto:</label>
               <input class="form-control" id="miasto" name="miasto" formControlName="miasto" required minlength="2"
-                     maxlength="30">
+                maxlength="30">
             </div>
             <div class="mb-3">
               <label for="ulica">Ulica:</label>
               <input class="form-control" id="ulica" name="ulica" formControlName="ulica" required minlength="2"
-                     maxlength="30">
+                maxlength="30">
             </div>
             <div class="mb-3">
               <label for="numer">Numer domu:</label>
-              <input class="form-control" id="numer" name="numer" formControlName="numer" type="number" required minlength="0" maxlength="1000"
-                     maxlength="30">
+              <input class="form-control" id="numer" name="numer" formControlName="numer" type="number" required
+                minlength="0" maxlength="1000" maxlength="30">
             </div>
-        </div>
-        <div class="mb-3">
-          <button class="btn btn-danger" type="reset">Wyczysc</button>
-          <button class="btn btn-primary" [disabled]="form.invalid">Zatwierdz</button>
+          </div>
+          <div class="mb-3">
+            <button class="btn btn-danger" type="reset">Wyczysc</button>
+            <button class="btn btn-primary">Zatwierdz</button>
+          </div>
         </div>
       </form>
     </div>
   </div>
-  </div>
+</div>
