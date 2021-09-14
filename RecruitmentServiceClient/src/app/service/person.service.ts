@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Person } from 'src/models/person';
 import { Skill } from 'src/models/skill';
+import { LoginService } from './login.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,13 +11,13 @@ export class PersonService {
 
   private persons: BehaviorSubject<Person[]> = new BehaviorSubject<Person[]>([]);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private loginService: LoginService) { }
   getAllPersons(): Observable<Person[]> {
-    return this.http.get<Person[]>("http://localhost:8080/persons");
+    return this.http.get<Person[]>("http://localhost:8080/persons", {headers: this.loginService.addAuthorizationHeader()});
   }
   getPersonsWithSkill(id: number): Observable<Person[]> {
     if (id >= 0)
-      return this.http.get<Person[]>("http://localhost:8080/persons?id=" + id);
+      return this.http.get<Person[]>("http://localhost:8080/persons?id=" + id, {headers: this.loginService.addAuthorizationHeader()});
   }
   observe(): Observable<Person[]> {
     return this.persons.asObservable();
@@ -32,10 +33,10 @@ export class PersonService {
     let params: HttpParams = new HttpParams()
       .set("idSkills", idSkills)
       .set("city", city);
-    return this.http.get<Person[]>("http://localhost:8080/personsBySkills", { params });
+    return this.http.get<Person[]>("http://localhost:8080/personsBySkills",{ params:params , headers: this.loginService.addAuthorizationHeader()});
   }
 
   getPersonsCities() {
-    return this.http.get<string[]>("http://localhost:8080/personsCities");
+    return this.http.get<string[]>("http://localhost:8080/personsCities", {headers: this.loginService.addAuthorizationHeader()});
   }
 }

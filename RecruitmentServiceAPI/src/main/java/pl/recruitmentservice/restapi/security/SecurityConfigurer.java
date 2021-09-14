@@ -16,6 +16,9 @@ import pl.recruitmentservice.restapi.service.RecruitmentUserDetailService;
 @EnableWebSecurity
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
+    private String[] swaggerPages = {"/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
+            "/configuration/security", "/swagger-ui.html", "/webjars/**"};
+
     @Autowired
     private RecruitmentUserDetailService userDetailService;
     @Autowired
@@ -30,13 +33,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests().antMatchers(
-                "/login",
-                "/v2/api-docs",
-                "/configuration/ui",
-                "/swagger-resources/**",
-                "/configuration/security",
-                "/swagger-ui.html",
-                "/webjars/**").permitAll()
+                "/login").permitAll()
+                .and().authorizeRequests().antMatchers(swaggerPages).permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
