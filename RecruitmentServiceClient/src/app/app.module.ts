@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './component/app.component';
 import { PersonComponent } from './component/person/person.component';
 import { SkillComponent } from './component/skill/skill.component';
-import { LevelComponent } from './component/level/level.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './component/main/main.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -20,7 +19,6 @@ import { AddClientComponent } from './component/add-client/add-client.component'
     AppComponent,
     PersonComponent,
     SkillComponent,
-    LevelComponent,
     MainComponent,
     HomeComponent,
     LoginComponent,
