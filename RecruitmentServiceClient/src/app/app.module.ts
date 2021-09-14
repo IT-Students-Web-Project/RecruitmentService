@@ -14,6 +14,7 @@ import { AddCandidateComponent } from './component/add-candidate/add-candidate.c
 import { AddProjectComponent } from './component/add-project/add-project.component';
 import { AddClientComponent } from './component/add-client/add-client.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProjektComponent } from './projekt/projekt.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     AddCandidateComponent,
     AddProjectComponent,
-    AddClientComponent
+    AddClientComponent,
+    ProjektComponent
   ],
     imports: [
         BrowserModule,
