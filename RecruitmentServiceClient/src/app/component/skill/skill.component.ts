@@ -26,8 +26,6 @@ export class SkillComponent implements OnInit {
     this.personService.getPersonsCities().subscribe(c => this.cities = c);
   }
 
-  getRouter(): Router { return this.router; }
-
   selectSkill(skill: Skill) {
     console.log("select skill");
 

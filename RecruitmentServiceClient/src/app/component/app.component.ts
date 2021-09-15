@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { Skill } from 'src/models/skill';
-import { SkillService } from '../service/skill.service';
+import { Login, LoginService } from '../service/login.service';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +9,17 @@ import { SkillService } from '../service/skill.service';
 })
 export class AppComponent implements OnInit{
 
-  skills: Skill[];
+  displayLogout: Boolean = false;
 
-  constructor(private skillService: SkillService, private router: Router) {}
+  constructor(private loginService: LoginService) {}
 
-  ngOnInit(){ this.skillService.getSkills().subscribe(s => this.skills = s); }
+  ngOnInit(){     
+    this.loginService.getStatus().subscribe(s => this.displayLogout = s);
+  }
+
+  logout() {
+    this.loginService.logout();
+  }
 
   title = 'RecruitmentServiceClient';
-
-  getRouter(): Router{return this.router; }
 }
