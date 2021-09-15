@@ -7,6 +7,7 @@ import {LoginComponent} from './component/login/login.component';
 import {AddCandidateComponent} from './component/add-candidate/add-candidate.component';
 import {AddProjectComponent} from './component/add-project/add-project.component';
 import {AddClientComponent} from './component/add-client/add-client.component';
+import { ProjektComponent } from './projekt/projekt.component';
 
 const routes: Routes = [
   {
@@ -33,7 +34,10 @@ const routes: Routes = [
       path: ':id', component: PersonComponent
     }
     ]
-  }
+  },
+  {
+    path: 'projekt', component: ProjektComponent
+  },
 ];
 
 @NgModule({

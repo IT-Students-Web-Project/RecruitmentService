@@ -14,11 +14,12 @@
   </div>
 
   <br>
-  <div class="="dls-menu-item">
+  <div class="dls-menu-item">
       <button (click)="wyszukajProjekt()" class="btn btn-sm btn-success">Szukaj</button>
       <div class="col-sm">
       </div>
   </div>
+
 
   <br>
   <h2>Wyniki</h2>
@@ -34,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let p of project; let i = index">
+        <tr *ngFor="let p of skills let i = index">
           <td>{{i + 1}}</td>
           <td>{{p.name}}</td>
           <td>{{p.description}}</td>
