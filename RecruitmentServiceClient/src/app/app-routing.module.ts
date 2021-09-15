@@ -8,6 +8,7 @@ import { AddCandidateComponent } from './component/add-candidate/add-candidate.c
 import { AddProjectComponent } from './component/add-project/add-project.component';
 import { AddClientComponent } from './component/add-client/add-client.component';
 import { AuthorizationGuard } from './authorization.guard';
+import { ProjektComponent } from './projekt/projekt.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,7 +21,8 @@ const routes: Routes = [
     path: 'person', canActivate: [AuthorizationGuard], children: [
       { path: ':id', component: PersonComponent, canActivate: [AuthorizationGuard] }
     ]
-  }
+  },
+  { path: 'projekt', component: ProjektComponent, canActivate: [AuthorizationGuard] }
 ];
 
 @NgModule({
