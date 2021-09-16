@@ -101,8 +101,7 @@ public class RecruitmentController {
         Skill skill = new Skill();
         skill.setId(skillId);
         skill.setName(skillDTO.getName());
-        recruitmentService.removeSkill(skillId);
-        recruitmentService.addSkill(skill);
+        recruitmentService.editSkill(skillId, skill);
         return getSkills();
     }
 

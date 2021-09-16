@@ -108,4 +108,10 @@ public class RecruitmentService implements IRecruitmentService {
                 .sorted()
                 .collect(Collectors.toList());
     }
+    @Override
+    public void editSkill(int id, Skill skill) {
+        Skill editedSkill = skillRepository.findById(id).get();
+        editedSkill.setName(skill.getName());
+        skillRepository.save(editedSkill);
+    }
 }

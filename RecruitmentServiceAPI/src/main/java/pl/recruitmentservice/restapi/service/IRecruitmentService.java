@@ -23,4 +23,5 @@ public interface IRecruitmentService {
     public void addSkill (Skill skill);
     public List<Level> getLevels();
     public List<String> getPersonsCities();
+    public void editSkill(int id, Skill skill);
 }
