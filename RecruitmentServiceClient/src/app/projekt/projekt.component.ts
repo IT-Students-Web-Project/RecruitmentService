@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Person } from 'src/models/person';
 import { Skill } from 'src/models/skill';
-import { ProjektService } from '../projekt.service';
+import { Project, ProjektService } from '../projekt.service';
 
 @Component({
   selector: 'app-projekt',
@@ -11,20 +11,13 @@ import { ProjektService } from '../projekt.service';
 })
 export class ProjektComponent implements OnInit {
 
-  skills: Skill[] = [];
-  selectedSkills: Skill[] = [];
-  persons: Person[] = [];
+  projects: Project[] = [];
  
 
-  constructor(private skillService: ProjektService) { }
+  constructor(private projectService: ProjektService) { }
 
 
   ngOnInit(): void {
-
+    this.projectService.getProjects().subscribe(p => this.projects = p);
   }
-
-  wyszukajProjekt() {
-    
-  }
-
 }

@@ -38,4 +38,8 @@ export class PersonService {
   getPersonsCities() {
     return this.http.get<string[]>("http://localhost:8080/personsCities", {headers: this.loginService.authorizationHeader()});
   }
+
+  addPerson(person: Person): Observable<Person> { 
+    return  this.http.post<Person>('http://localhost:8080/addPerson', person, {
+    headers: this.loginService.authorizationHeader()}); }
 }
