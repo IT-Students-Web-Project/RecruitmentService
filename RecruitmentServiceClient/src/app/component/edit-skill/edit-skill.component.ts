@@ -10,7 +10,7 @@ import {SkillService} from '../../service/skill.service';
 })
 export class EditSkillComponent implements OnInit {
 
-  skill: Skill;
+  skill: Skill = {id: null, name: null};
   id: number;
 
   constructor(private router: Router, private route: ActivatedRoute, private skillService: SkillService) { }
@@ -24,7 +24,7 @@ export class EditSkillComponent implements OnInit {
 
   confirmEdit(name: string): void {
     this.skill.name = name;
-    this.skillService.editSkill(this.id, this.skill);
+    this.skillService.editSkill(this.id, this.skill).subscribe(s => console.log(s));
     this.router.navigateByUrl('skills/list');
   }
 

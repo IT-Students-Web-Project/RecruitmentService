@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class AddSkillComponent implements OnInit {
 
-  skill: Skill;
+  skill: Skill = {id: null, name: null};
 
   constructor(private router: Router, private skillService: SkillService) { }
 
@@ -20,7 +20,7 @@ export class AddSkillComponent implements OnInit {
   confirmAdd(name: string): void {
     this.skill.name = name;
     this.skill.id = 0;
-    this.skillService.addSkill(this.skill);
+    this.skillService.addSkill(this.skill).subscribe(s => console.log(s));
     this.router.navigateByUrl('skills/list');
   }
 }

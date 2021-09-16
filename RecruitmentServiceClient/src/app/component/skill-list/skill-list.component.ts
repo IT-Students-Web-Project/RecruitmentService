@@ -23,6 +23,6 @@ export class SkillListComponent implements OnInit {
   }
 
   deleteSkill(id: number): void {
-    this.skillService.removeSkill(id);
+    this.skillService.removeSkill(id).subscribe(s => this.skills = s);
   }
 }
