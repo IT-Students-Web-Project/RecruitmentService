@@ -51,21 +51,7 @@ public class RecruitmentController {
 
     @PutMapping("/person/{id}")
     public Iterable<PersonDTO> editPerson(@PathVariable(value = "id") int personID, @RequestBody PersonDTO personDTO) {
-        Optional<Person> optionalPerson = recruitmentService.getPerson(personID);
-        if (optionalPerson.isPresent() && personDTO != null){
-            Person editedPerson = optionalPerson.get();
-            editedPerson.setAddress(personDTO.getAddress().createAddress());
-            editedPerson.setFirstName(personDTO.getFirstName());
-            editedPerson.setLastName(personDTO.getLastName());
-            /*List<PersonsSkillDTO> personsSkillDTOs = personDTO.getPersonSkills();
-            List<PersonsSkill> personsSkillList = new ArrayList<>();
-            for (PersonsSkillDTO pS: personsSkillDTOs) {
-                personsSkillList.add(recruitmentService.getPersonSkill(pS.getId()));
-            }
-            editedPerson.setPersonsSkills(personsSkillList);*/
-            recruitmentService.removePerson(personID);
-            recruitmentService.addPerson(editedPerson);
-        }
+        recruitmentService.editPerson(personID, personDTO);
         return getPersons();
     }
 
@@ -73,6 +59,11 @@ public class RecruitmentController {
     public Iterable<PersonDTO> deletePerson(@PathVariable(value = "id") int personID) {
         recruitmentService.removePerson(personID);
         return getPersons();
+    }
+
+    @GetMapping("/person/{id}")
+    public PersonDTO getPersonById(@PathVariable(value = "id") int personID) {
+        return new PersonDTO(recruitmentService.getPerson(personID).get());
     }
 
     @GetMapping("/persons")
@@ -101,8 +92,7 @@ public class RecruitmentController {
         Skill skill = new Skill();
         skill.setId(skillId);
         skill.setName(skillDTO.getName());
-        recruitmentService.removeSkill(skillId);
-        recruitmentService.addSkill(skill);
+        recruitmentService.editSkill(skillId, skill);
         return getSkills();
     }
 

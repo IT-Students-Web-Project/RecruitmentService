@@ -19,6 +19,14 @@ public class AddressDTO {
         this.city = addres.getCity();
     }
 
+    public AddressDTO() {
+        id = null;
+        street = null;
+        buildingNumber = null;
+        flatNumber = null;
+        city = null;
+    }
+
     public Address createAddress(){
         Address address = new Address(street,buildingNumber,flatNumber,city,"","");
         address.setId(id);

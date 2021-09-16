@@ -22,6 +22,14 @@ public class PersonDTO {
         this.personSkills = new PersonSkillsDTOList(person.getPersonsSkills()).getList();
     }
 
+    public PersonDTO(){
+        id = null;
+        firstName = null;
+        lastName = null;
+        address = null;
+        personSkills = null;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -1,1 +1,24 @@
-<p>person works!</p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h1 class="h2">Edycja osoby</h1>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Imię</th>
+      <th>Nazwisko</th>
+      <th>Miasto</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{person.id}}</td>
+      <td><input required minlength="2" value="{{person.firstName}}" maxlength="30" #firstName></td>
+      <td><input required minlength="2" value="{{person.lastName}}" maxlength="30" #lastName></td>
+      <td><input required minlength="2" value="{{person.address.city}}" maxlength="30" #city></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<button (click)="confirmEdit(firstName.value, lastName.value, city.value)" class="btn btn-sm btn-primary"><i class="fa fa-folder"></i> Potwierdź edycję</button>

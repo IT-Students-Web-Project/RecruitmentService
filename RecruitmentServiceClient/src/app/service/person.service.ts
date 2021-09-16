@@ -19,7 +19,12 @@ export class PersonService {
     if (id >= 0)
       return this.http.get<Person[]>("http://localhost:8080/persons?id=" + id, {headers: this.loginService.authorizationHeader()});
   }
-
+  getPersonById(id: number): Observable<Person> {
+    return  this.http.get<Person>("http://localhost:8080/person/" + id, {headers: this.loginService.authorizationHeader()} );
+  }
+  editPerson(id: number, person: Person): Observable<Person[]>{
+    return  this.http.put<Person[]>("http://localhost:8080/person/" + id, person, {headers: this.loginService.authorizationHeader()});
+  }
   getPersonsBySkills(selectedSkills: Skill[], city: string) {
     let idSkills = "";
     selectedSkills.forEach(s => {
@@ -39,7 +44,7 @@ export class PersonService {
     return this.http.get<string[]>("http://localhost:8080/personsCities", {headers: this.loginService.authorizationHeader()});
   }
 
-  addPerson(person: Person): Observable<Person> { 
+  addPerson(person: Person): Observable<Person> {
     return  this.http.post<Person>('http://localhost:8080/addPerson', person, {
     headers: this.loginService.authorizationHeader()}); }
 }

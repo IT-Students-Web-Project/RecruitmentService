@@ -3,14 +3,9 @@ package pl.recruitmentservice.restapi.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.recruitmentservice.restapi.model.Person;
-import pl.recruitmentservice.restapi.model.PersonsSkill;
-import pl.recruitmentservice.restapi.model.Skill;
-import pl.recruitmentservice.restapi.model.Level;
-import pl.recruitmentservice.restapi.repository.LevelRepository;
-import pl.recruitmentservice.restapi.repository.PersonSkillsRepository;
-import pl.recruitmentservice.restapi.repository.PersonsRepository;
-import pl.recruitmentservice.restapi.repository.SkillRepository;
+import pl.recruitmentservice.restapi.dto.PersonDTO;
+import pl.recruitmentservice.restapi.model.*;
+import pl.recruitmentservice.restapi.repository.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +16,9 @@ import java.util.stream.Collectors;
 public class RecruitmentService implements IRecruitmentService {
     @Autowired
     private final PersonsRepository personsRepository;
+
+    @Autowired
+    private final AddressRepository addressRepository;
 
     @Autowired
     private final PersonSkillsRepository personSkillsRepository;
@@ -85,6 +83,13 @@ public class RecruitmentService implements IRecruitmentService {
     }
 
     @Override
+    public void editSkill(int id, Skill skill) {
+        Skill editedSkill = skillRepository.findById(id).get();
+        editedSkill.setName(skill.getName());
+        skillRepository.save(editedSkill);
+    }
+
+    @Override
     public List<Level> getLevels() {
         return levelRepository.findAll();
     }
@@ -107,5 +112,16 @@ public class RecruitmentService implements IRecruitmentService {
                 .distinct()
                 .sorted()
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void editPerson(int id, PersonDTO personDTO) {
+        Person editPerson = personsRepository.findById(id).get();
+        editPerson.setFirstName(personDTO.getFirstName());
+        editPerson.setLastName(personDTO.getLastName());
+        Address editAddress = addressRepository.findById(editPerson.getAddress().getId()).get();
+        editAddress.setCity(personDTO.getAddress().getCity());
+        personsRepository.save(editPerson);
+        addressRepository.save(editAddress);
     }
 }
