@@ -21,4 +21,6 @@ public class PersonsSkillDTO {
         this.skill = personSkill.getSkill();
         this.skillLevel = personSkill.getLevel();
     }
+
+    public int getId() {return id;}
 }

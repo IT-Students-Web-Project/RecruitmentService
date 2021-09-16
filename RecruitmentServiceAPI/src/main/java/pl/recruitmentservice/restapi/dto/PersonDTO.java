@@ -21,4 +21,24 @@ public class PersonDTO {
         this.address = new AddressDTO(person.getAddress());
         this.personSkills = new PersonSkillsDTOList(person.getPersonsSkills()).getList();
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public AddressDTO getAddress() {
+        return address;
+    }
+
+    public List<PersonsSkillDTO> getPersonSkills() {
+        return personSkills;
+    }
 }

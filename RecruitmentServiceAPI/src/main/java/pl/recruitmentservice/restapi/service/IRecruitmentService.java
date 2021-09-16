@@ -7,10 +7,15 @@ import pl.recruitmentservice.restapi.model.Level;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IRecruitmentService {
     public List<Person> getPersons();
+    public Optional<Person> getPerson(int id);
+    public void removePerson(int id);
+    public void addPerson(Person person);
     public List<PersonsSkill> getPersonSkills();
+    public PersonsSkill getPersonSkill(int id);
     public List<Person> getPersonsBySkills(List<Integer> idSkills);
     public List<Skill> getSkills();
     public List<Level> getLevels();
