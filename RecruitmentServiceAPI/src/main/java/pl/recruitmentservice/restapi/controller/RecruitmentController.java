@@ -49,9 +49,14 @@ public class RecruitmentController {
         return new TokenDto(token);
     }
 
-    @PutMapping("/person/{id}")
-    public Iterable<PersonDTO> editPerson(@PathVariable(value = "id") int personID, @RequestBody PersonDTO personDTO) {
-        Optional<Person> optionalPerson = recruitmentService.getPerson(personID);
+    @PostMapping("/addPerson")
+    public PersonDTO addPerson(@RequestBody PersonDTO personDTO) {
+        return recruitmentService.addPerson(personDTO.createPerson());
+    }
+
+    @PutMapping("/person")
+    public Iterable<PersonDTO> editPerson(@RequestBody PersonDTO personDTO) {
+        Optional<Person> optionalPerson = recruitmentService.getPerson(personDTO.getId());
         if (optionalPerson.isPresent() && personDTO != null){
             Person editedPerson = optionalPerson.get();
             editedPerson.setAddress(personDTO.getAddress().createAddress());
@@ -63,16 +68,30 @@ public class RecruitmentController {
                 personsSkillList.add(recruitmentService.getPersonSkill(pS.getId()));
             }
             editedPerson.setPersonsSkills(personsSkillList);*/
-            recruitmentService.removePerson(personID);
+            recruitmentService.removePerson(personDTO.getId());
             recruitmentService.addPerson(editedPerson);
         }
         return getPersons();
+    }
+
+    @GetMapping("person/{id}")
+    public PersonDTO getPerson(@PathVariable(value="id") int personID) {
+        Person person = recruitmentService.getPerson(personID).get();
+        if(person == null)
+            return new PersonDTO();
+        else
+            return new PersonDTO(person);
     }
 
     @DeleteMapping("person/{id}")
     public Iterable<PersonDTO> deletePerson(@PathVariable(value = "id") int personID) {
         recruitmentService.removePerson(personID);
         return getPersons();
+    }
+
+    @GetMapping("/projects")
+    public Iterable<ProjectDto> getProjects() {
+        return new ProjectDtoList(recruitmentService.getProjects()).getList();
     }
 
     @GetMapping("/persons")

@@ -1,15 +1,21 @@
 package pl.recruitmentservice.restapi.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 import pl.recruitmentservice.restapi.model.Address;
 
 @Getter
+@Setter
 public class AddressDTO {
-    private final Integer id;
-    private final String street;
-    private final Integer buildingNumber;
-    private final Integer flatNumber;
-    private final String city;
+    private Integer id;
+    private String street;
+    private Integer buildingNumber;
+    private Integer flatNumber;
+    private String city;
+
+    public AddressDTO() {
+
+    }
 
     public AddressDTO(Address addres) {
         this.id = addres.getId();

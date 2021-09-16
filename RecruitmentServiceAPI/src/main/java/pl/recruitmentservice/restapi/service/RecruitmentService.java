@@ -3,17 +3,13 @@ package pl.recruitmentservice.restapi.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.recruitmentservice.restapi.model.Person;
-import pl.recruitmentservice.restapi.model.PersonsSkill;
-import pl.recruitmentservice.restapi.model.Skill;
-import pl.recruitmentservice.restapi.model.Level;
-import pl.recruitmentservice.restapi.repository.LevelRepository;
-import pl.recruitmentservice.restapi.repository.PersonSkillsRepository;
-import pl.recruitmentservice.restapi.repository.PersonsRepository;
-import pl.recruitmentservice.restapi.repository.SkillRepository;
+import pl.recruitmentservice.restapi.dto.PersonDTO;
+import pl.recruitmentservice.restapi.model.*;
+import pl.recruitmentservice.restapi.repository.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,15 +17,16 @@ import java.util.stream.Collectors;
 public class RecruitmentService implements IRecruitmentService {
     @Autowired
     private final PersonsRepository personsRepository;
-
     @Autowired
     private final PersonSkillsRepository personSkillsRepository;
-
     @Autowired
     private final SkillRepository skillRepository;
-
     @Autowired
     private final LevelRepository levelRepository;
+    @Autowired
+    private ProjectsRepository projectsRepository;
+    @Autowired
+    private AddressRepository addressRepository;
 
     @Override
     public List<Person> getPersons() {
@@ -49,8 +46,9 @@ public class RecruitmentService implements IRecruitmentService {
     }
 
     @Override
-    public void addPerson(Person person) {
-        personsRepository.save(person);
+    public PersonDTO addPerson(Person person) {
+        addressRepository.save(person.getAddress());
+        return new PersonDTO(personsRepository.save(person));
     }
 
     @Override
@@ -107,5 +105,10 @@ public class RecruitmentService implements IRecruitmentService {
                 .distinct()
                 .sorted()
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Project> getProjects() {
+        return projectsRepository.findAll();
     }
 }
