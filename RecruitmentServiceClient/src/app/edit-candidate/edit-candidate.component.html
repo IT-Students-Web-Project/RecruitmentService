@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="container">
+      <h4 class="mb-3">Edycja kandydata:</h4>
+      <div class="row">
+        <!--
+        <form class="needs-validation" novalidate *ngIf="form != null" [formGroup]="form" (ngSubmit)="onSubmit()">
+  -->
+        <form (submit)="confirmEdit()">
+          <div class="col-md-8 order-md-1">
+            <div class="row">
+              <div class="mb-3">
+                <label for="imie">Imię:</label>
+                <input class="form-control" id="imie" name="imie" required minlength="2"
+                  maxlength="30" [(ngModel)]="person.firstName">
+              </div>
+              <div class="mb-3">
+                <label for="nazwisko">Nazwisko:</label>
+                <input class="form-control" id="nazwisko" name="nazwisko" required
+                  minlength="2" maxlength="30" [(ngModel)]="person.lastName">
+              </div>
+              <div class="mb-3">
+                <label for="miasto">Miasto:</label>
+                <input class="form-control" id="miasto" name="miasto" required minlength="2"
+                  maxlength="30" [(ngModel)]="person.address.city">
+              </div>
+              <div class="mb-3">
+                <label for="ulica">Ulica:</label>
+                <input class="form-control" id="ulica" name="ulica" required minlength="2"
+                  maxlength="30" [(ngModel)]="person.address.street">
+              </div>
+              <div class="mb-3">
+                <label for="numer">Numer domu:</label>
+                <input class="form-control" id="numer" name="numer" type="number" required
+                  minlength="0" maxlength="1000" maxlength="30" [(ngModel)]="person.address.buildingNumber">
+              </div>
+              <div class="mb-3">
+                <label for="numer">Numer lokalu:</label>
+                <input class="form-control" id="numer" name="numer" type="number" required
+                  minlength="0" maxlength="1000" maxlength="30" [(ngModel)]="person.address.flatNumber">
+              </div>
+            </div>
+            <div class="mb-3">
+              <button typ="submit" class="btn btn-primary">Zatwierdź edycję</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -42,4 +42,12 @@ export class SkillComponent implements OnInit {
   choosePerson(id: number) {
     this.router.navigateByUrl('person/' + id);
   }
+
+  editPerson(id: number) {
+    this.router.navigateByUrl('person/edit/' + id);
+  }
+
+  deletePerson(id: number) {
+    this.personService.deletePerson(id).subscribe(p => console.log(id));
+  }
 }

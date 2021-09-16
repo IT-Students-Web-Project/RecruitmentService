@@ -12,6 +12,7 @@ import { ProjektComponent } from './projekt/projekt.component';
 import {EditSkillComponent} from './component/edit-skill/edit-skill.component';
 import {AddSkillComponent} from './component/add-skill/add-skill.component';
 import {SkillListComponent} from './component/skill-list/skill-list.component';
+import { EditCandidateComponent } from './edit-candidate/edit-candidate.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'addClient', component: AddClientComponent, canActivate: [AuthorizationGuard] },
   {
     path: 'person', canActivate: [AuthorizationGuard], children: [
-      { path: ':id', component: PersonComponent, canActivate: [AuthorizationGuard] }
+      { path: ':id', component: PersonComponent, canActivate: [AuthorizationGuard] },
+      { path: 'edit/:id', component: EditCandidateComponent, canActivate: [AuthorizationGuard] }
     ]
   },
   {

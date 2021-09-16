@@ -39,6 +39,8 @@
         <th>Nazwisko</th>
         <th>Lokalizacja</th>
         <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -47,7 +49,11 @@
         <td>{{p.firstName}}</td>
         <td>{{p.lastName}}</td>
         <td>{{p.address.city}}</td>
-        <td><button (click)="choosePerson(p.id)" class="btn btn-sm btn-primary"><i class="fa fa-folder"></i> Wybierz</button></td>
+        <td><button (click)="choosePerson(p.id)" class="btn btn-sm btn-primary"><i class="fa fa-folder"></i>
+            Wybierz</button></td>
+        <td><button (click)="editPerson(p.id)" class="btn btn-sm btn-secondary"><i class="fa fa-folder"></i>
+            Edytuj</button></td>            
+      <td><button (click)="deletePerson(p.id)" class="btn btn-sm btn-danger"><i class="fa fa-folder"></i> Usuń</button></td>
       </tr>
     </tbody>
   </table>

@@ -18,6 +18,7 @@ import { ProjektComponent } from './projekt/projekt.component';
 import { EditSkillComponent } from './component/edit-skill/edit-skill.component';
 import { AddSkillComponent} from './component/add-skill/add-skill.component';
 import {SkillListComponent} from './component/skill-list/skill-list.component';
+import { EditCandidateComponent } from './edit-candidate/edit-candidate.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {SkillListComponent} from './component/skill-list/skill-list.component';
     ProjektComponent,
     EditSkillComponent,
     AddSkillComponent,
-    SkillListComponent
+    SkillListComponent,
+    EditCandidateComponent
   ],
     imports: [
         BrowserModule,
