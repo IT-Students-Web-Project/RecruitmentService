@@ -21,5 +21,7 @@ import java.util.Optional;
      void addSkill (Skill skill);
      List<Level> getLevels();
      List<String> getPersonsCities();
-    List<Project> getProjects();
+     List<Project> getProjects();
+     void editSkill(int id, Skill skill);
+     void editPerson(int id, PersonDTO personDTO);
 }

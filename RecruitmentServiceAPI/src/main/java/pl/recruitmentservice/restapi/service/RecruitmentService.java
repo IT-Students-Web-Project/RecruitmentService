@@ -111,4 +111,24 @@ public class RecruitmentService implements IRecruitmentService {
     public List<Project> getProjects() {
         return projectsRepository.findAll();
     }
+
+    @Override
+    public void editSkill(int id, Skill skill) {
+        Skill editedSkill = skillRepository.findById(id).get();
+        editedSkill.setName(skill.getName());
+        skillRepository.save(editedSkill);
+    }
+    @Override
+    public void editPerson(int id, PersonDTO personDTO) {
+        Person editPerson = personsRepository.findById(id).get();
+        editPerson.setFirstName(personDTO.getFirstName());
+        editPerson.setLastName(personDTO.getLastName());
+        Address editAddress = addressRepository.findById(editPerson.getAddress().getId()).get();
+        editAddress.setCity(personDTO.getAddress().getCity());
+        editAddress.setStreet(personDTO.getAddress().getStreet());
+        editAddress.setBuildingNumber(personDTO.getAddress().getBuildingNumber());
+        editAddress.setFlatNumber(personDTO.getAddress().getFlatNumber());
+        personsRepository.save(editPerson);
+        addressRepository.save(editAddress);
+    }
 }
