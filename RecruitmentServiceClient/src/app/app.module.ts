@@ -15,6 +15,9 @@ import { AddProjectComponent } from './component/add-project/add-project.compone
 import { AddClientComponent } from './component/add-client/add-client.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjektComponent } from './projekt/projekt.component';
+import { EditSkillComponent } from './component/edit-skill/edit-skill.component';
+import { AddSkillComponent} from './component/add-skill/add-skill.component';
+import {SkillListComponent} from './component/skill-list/skill-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { ProjektComponent } from './projekt/projekt.component';
     AddCandidateComponent,
     AddProjectComponent,
     AddClientComponent,
-    ProjektComponent
+    ProjektComponent,
+    EditSkillComponent,
+    AddSkillComponent,
+    SkillListComponent
   ],
     imports: [
         BrowserModule,
