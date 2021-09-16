@@ -28,8 +28,8 @@ const routes: Routes = [
   {
     path: 'skills', canActivate: [AuthorizationGuard], children: [
       { path: 'list', component: SkillListComponent },
-      { path: ':id', component: EditSkillComponent },
-      { path: 'add', component: AddSkillComponent }
+      { path: 'add', component: AddSkillComponent },
+      { path: ':id', component: EditSkillComponent }
     ]
   },
   { path: 'projekt', component: ProjektComponent, canActivate: [AuthorizationGuard] }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {SkillService} from '../../service/skill.service';
+import {Skill} from '../../../models/skill';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-skill',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddSkillComponent implements OnInit {
 
-  constructor() { }
+  skill: Skill;
+
+  constructor(private router: Router, private skillService: SkillService) { }
 
   ngOnInit(): void {
   }
 
+  confirmAdd(name: string): void {
+    this.skill.name = name;
+    this.skill.id = 0;
+    this.skillService.addSkill(this.skill);
+    this.router.navigateByUrl('skills/list');
+  }
 }

@@ -1,1 +1,23 @@
-<p>skill-list works!</p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h1 class="h2">Lista umiętności</h1>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nazwa</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let s of skills; let i = index">
+      <td>{{s.id}}</td>
+      <td>{{s.name}}</td>
+      <td><button (click)="editSkill(s.id)" class="btn btn-sm btn-primary"><i class="fa fa-folder"></i> Edytuj</button></td>
+      <td><button (click)="deleteSkill(s.id)" class="btn btn-sm btn-danger"><i class="fa fa-folder"></i> Usuń</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

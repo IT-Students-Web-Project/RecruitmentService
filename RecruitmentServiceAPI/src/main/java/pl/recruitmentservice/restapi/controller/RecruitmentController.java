@@ -108,6 +108,7 @@ public class RecruitmentController {
 
     @DeleteMapping("/skill/{id}")
     public Iterable<SkillDTO> removeSkill(@PathVariable(value = "id") int skillId){
+        System.out.println("Deleted skill " + skillId);
         recruitmentService.removeSkill(skillId);
         return getSkills();
     }
