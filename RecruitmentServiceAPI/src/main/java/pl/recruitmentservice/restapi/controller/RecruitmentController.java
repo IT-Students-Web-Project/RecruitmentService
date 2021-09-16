@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.recruitmentservice.restapi.dto.*;
 import pl.recruitmentservice.restapi.model.Person;
 import pl.recruitmentservice.restapi.model.PersonsSkill;
+import pl.recruitmentservice.restapi.model.Skill;
 import pl.recruitmentservice.restapi.security.JwtUtil;
 import pl.recruitmentservice.restapi.service.IRecruitmentService;
 import pl.recruitmentservice.restapi.service.RecruitmentUserDetailService;
@@ -82,6 +83,33 @@ public class RecruitmentController {
     @GetMapping("/skills")
     public Iterable<SkillDTO> getSkills() {
         return new SkillDTOtoList(recruitmentService.getSkills()).getList();
+    }
+
+    @GetMapping("/skill/{id}")
+    public SkillDTO getSkillById(@PathVariable(value = "id") int skillId){
+        return new SkillDTO(recruitmentService.getSkill(skillId));
+    }
+
+    @PostMapping("/addSkill")
+    public Iterable<SkillDTO> addSkill(@RequestBody SkillDTO skillDTO){
+        recruitmentService.addSkill(new Skill(skillDTO.getName()));
+        return getSkills();
+    }
+
+    @PutMapping("/skill/{id}")
+    public Iterable<SkillDTO> editSkill(@PathVariable(value = "id") int skillId, @RequestBody SkillDTO skillDTO){
+        Skill skill = new Skill();
+        skill.setId(skillId);
+        skill.setName(skillDTO.getName());
+        recruitmentService.removeSkill(skillId);
+        recruitmentService.addSkill(skill);
+        return getSkills();
+    }
+
+    @DeleteMapping("/skill/{id}")
+    public Iterable<SkillDTO> removeSkill(@PathVariable(value = "id") int skillId){
+        recruitmentService.removeSkill(skillId);
+        return getSkills();
     }
 
     @GetMapping("/levels")

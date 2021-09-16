@@ -18,6 +18,9 @@ public interface IRecruitmentService {
     public PersonsSkill getPersonSkill(int id);
     public List<Person> getPersonsBySkills(List<Integer> idSkills);
     public List<Skill> getSkills();
+    public Skill getSkill(int id);
+    public void removeSkill(int id);
+    public void addSkill (Skill skill);
     public List<Level> getLevels();
     public List<String> getPersonsCities();
 }

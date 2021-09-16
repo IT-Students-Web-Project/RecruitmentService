@@ -70,6 +70,21 @@ public class RecruitmentService implements IRecruitmentService {
     }
 
     @Override
+    public Skill getSkill(int id) {
+        return skillRepository.findById(id).get();
+    }
+
+    @Override
+    public void removeSkill(int id) {
+        skillRepository.delete(skillRepository.findById(id).get());
+    }
+
+    @Override
+    public void addSkill(Skill skill) {
+        skillRepository.save(skill);
+    }
+
+    @Override
     public List<Level> getLevels() {
         return levelRepository.findAll();
     }

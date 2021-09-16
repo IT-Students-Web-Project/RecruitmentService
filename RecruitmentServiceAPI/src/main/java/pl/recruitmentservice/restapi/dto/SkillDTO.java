@@ -11,4 +11,12 @@ public class SkillDTO {
         this.id = skill.getId();
         this.name = skill.getName();
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
