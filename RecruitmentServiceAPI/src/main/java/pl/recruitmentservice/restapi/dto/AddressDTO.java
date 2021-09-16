@@ -18,4 +18,10 @@ public class AddressDTO {
         this.flatNumber = addres.getFlatNumber();
         this.city = addres.getCity();
     }
+
+    public Address createAddress(){
+        Address address = new Address(street,buildingNumber,flatNumber,city,"","");
+        address.setId(id);
+        return address;
+    }
 }

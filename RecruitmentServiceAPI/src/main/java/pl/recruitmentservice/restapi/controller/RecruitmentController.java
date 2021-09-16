@@ -9,14 +9,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import pl.recruitmentservice.restapi.dto.*;
 import pl.recruitmentservice.restapi.model.Person;
+import pl.recruitmentservice.restapi.model.PersonsSkill;
+import pl.recruitmentservice.restapi.model.Skill;
 import pl.recruitmentservice.restapi.security.JwtUtil;
 import pl.recruitmentservice.restapi.service.IRecruitmentService;
 import pl.recruitmentservice.restapi.service.RecruitmentUserDetailService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -50,6 +49,32 @@ public class RecruitmentController {
         return new TokenDto(token);
     }
 
+    @PutMapping("/person/{id}")
+    public Iterable<PersonDTO> editPerson(@PathVariable(value = "id") int personID, @RequestBody PersonDTO personDTO) {
+        Optional<Person> optionalPerson = recruitmentService.getPerson(personID);
+        if (optionalPerson.isPresent() && personDTO != null){
+            Person editedPerson = optionalPerson.get();
+            editedPerson.setAddress(personDTO.getAddress().createAddress());
+            editedPerson.setFirstName(personDTO.getFirstName());
+            editedPerson.setLastName(personDTO.getLastName());
+            /*List<PersonsSkillDTO> personsSkillDTOs = personDTO.getPersonSkills();
+            List<PersonsSkill> personsSkillList = new ArrayList<>();
+            for (PersonsSkillDTO pS: personsSkillDTOs) {
+                personsSkillList.add(recruitmentService.getPersonSkill(pS.getId()));
+            }
+            editedPerson.setPersonsSkills(personsSkillList);*/
+            recruitmentService.removePerson(personID);
+            recruitmentService.addPerson(editedPerson);
+        }
+        return getPersons();
+    }
+
+    @DeleteMapping("person/{id}")
+    public Iterable<PersonDTO> deletePerson(@PathVariable(value = "id") int personID) {
+        recruitmentService.removePerson(personID);
+        return getPersons();
+    }
+
     @GetMapping("/persons")
     public Iterable<PersonDTO> getPersons() {
         return new PersonsDTOtoList(recruitmentService.getPersons()).getList();
@@ -58,6 +83,34 @@ public class RecruitmentController {
     @GetMapping("/skills")
     public Iterable<SkillDTO> getSkills() {
         return new SkillDTOtoList(recruitmentService.getSkills()).getList();
+    }
+
+    @GetMapping("/skill/{id}")
+    public SkillDTO getSkillById(@PathVariable(value = "id") int skillId){
+        return new SkillDTO(recruitmentService.getSkill(skillId));
+    }
+
+    @PostMapping("/addSkill")
+    public Iterable<SkillDTO> addSkill(@RequestBody SkillDTO skillDTO){
+        recruitmentService.addSkill(new Skill(skillDTO.getName()));
+        return getSkills();
+    }
+
+    @PutMapping("/skill/{id}")
+    public Iterable<SkillDTO> editSkill(@PathVariable(value = "id") int skillId, @RequestBody SkillDTO skillDTO){
+        Skill skill = new Skill();
+        skill.setId(skillId);
+        skill.setName(skillDTO.getName());
+        recruitmentService.removeSkill(skillId);
+        recruitmentService.addSkill(skill);
+        return getSkills();
+    }
+
+    @DeleteMapping("/skill/{id}")
+    public Iterable<SkillDTO> removeSkill(@PathVariable(value = "id") int skillId){
+        System.out.println("Deleted skill " + skillId);
+        recruitmentService.removeSkill(skillId);
+        return getSkills();
     }
 
     @GetMapping("/levels")

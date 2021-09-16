@@ -12,11 +12,9 @@ import pl.recruitmentservice.restapi.repository.PersonSkillsRepository;
 import pl.recruitmentservice.restapi.repository.PersonsRepository;
 import pl.recruitmentservice.restapi.repository.SkillRepository;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -39,13 +37,51 @@ public class RecruitmentService implements IRecruitmentService {
     }
 
     @Override
+    public Optional<Person> getPerson(int id) {
+        return personsRepository.findById(id);
+    }
+
+    @Override
+    public void removePerson(int id) {
+        Optional<Person> person = personsRepository.findById(id);
+        if (!person.isEmpty())
+            personsRepository.delete(person.get());
+    }
+
+    @Override
+    public void addPerson(Person person) {
+        personsRepository.save(person);
+    }
+
+    @Override
     public List<PersonsSkill> getPersonSkills() {
         return personSkillsRepository.findAll();
     }
 
     @Override
+    public PersonsSkill getPersonSkill(int id){
+        Optional<PersonsSkill> personsSkill = personSkillsRepository.findById(id);
+        return personsSkill.get();
+    }
+
+    @Override
     public List<Skill> getSkills() {
         return skillRepository.findAll();
+    }
+
+    @Override
+    public Skill getSkill(int id) {
+        return skillRepository.findById(id).get();
+    }
+
+    @Override
+    public void removeSkill(int id) {
+        skillRepository.delete(skillRepository.findById(id).get());
+    }
+
+    @Override
+    public void addSkill(Skill skill) {
+        skillRepository.save(skill);
     }
 
     @Override

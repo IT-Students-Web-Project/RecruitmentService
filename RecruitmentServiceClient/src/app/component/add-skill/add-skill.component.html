@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h1 class="h2">Dodawanie</h1>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+    <tr>
+      <th>Nazwa</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><input required minlength="2"
+                 value="umiętność" maxlength="30" #name></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<button (click)="confirmAdd(name.value)" class="btn btn-sm btn-primary"><i class="fa fa-folder"></i> Potwierdź dodanie</button>
